@@ -1,0 +1,46 @@
+<!-- This is the librarian login page!-->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+ <a href="/"><img src="static/images/logo.png" alt='logo' class="logo"/></a>
+ 
+   <!-- Catching the info entered by the librarian!-->
+   <div class="form">
+   <div class="title">Login</div>
+   <form action="/login_librarian" method="POST">
+   <div class="input-container ic1">
+   <input autocomplete="off" type="email" class="input" name="email" required>
+   <div class="cut"></div>
+   <label for="Email" class="placeholder">Email</label>
+   	</div>
+   	<div class="input-container ic2">
+   <input autocomplete="off" type="password" class="input" name="password" required><br>
+   	<div class="cut"></div>
+    <label for="Password" class="placeholder">Password</label>
+    </div>
+	<!-- Error handling!-->
+		  {% with messages = get_flashed_messages() %}
+		{%if messages %}
+			{%for message in messages %}
+				<h5>{{message}}</h5>
+			{% endfor %}
+		{% endif %}
+	  {% endwith %}
+      <input type="submit" class="submit" value = 'Sumbit' name="login_librarian">
+	  <br><br>
+	<!-- Redirect to the signup page!-->
+    <a href="/register_librarian" class="button">Not registered yet? Sign Up</a><br>
+	   	</div>
+
+   </form>
+
+   
+
+
+	  
+ 
+
+</body>
+</html>

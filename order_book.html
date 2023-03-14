@@ -1,0 +1,71 @@
+<!-- This is the customer order book page!-->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+
+
+ <a href="/"><img src="static/images/logo.png" alt='logo' class="logo"/></a>
+
+<!-- User menu!-->
+<nav>
+  <a href="/search_for_book">Search Book</a>
+  <a href="/order_book">Order Book</a>
+  <a href="/customer_orders">Orders List</a>
+  <a href="/borrow_history">Borrow List</a>
+  <a href="/">Main Menu</a>
+  <div class="animation start-home"></div>
+</nav>
+
+
+<!-- Catching all the relevant details regarding the order!-->
+<h2>Order Book</h2>
+<div class="container">
+<form action="/order_book" method="POST">
+<div class="group"> 
+<input placeholder="Enter book name" autocomplete="off" type="text" name="book_name" required>
+<span class="highlight"></span>
+<span class="bar"></span>
+</div>
+<div class="group"> 
+<select name="branch_name">
+<option value="" disabled selected>Enter branch name</option>
+	{% for val in all_data %}
+<option value="{{val[0]}}" > {{val[0]}} </option>
+	{% endfor %}
+</select>
+<span class="highlight"></span>
+<span class="bar"></span>
+</div>
+<input type="submit" name="order_book" value="Order">
+<br>
+<!-- Error handling!-->
+{% with messages = get_flashed_messages() %}
+		{%if messages %}
+			{%for message in messages %}
+				<h5>{{message}}</h5>
+			{% endfor %}
+		{% endif %}
+	  {% endwith %}
+	  	  
+
+   </form>
+</div>
+   
+   
+
+
+
+<!-- Logout from the system!-->
+ <div class="logout">
+   {% if session.email %}
+      <a class="button1" href="/logout">Logout</a>
+   {% endif %}
+ </div>
+
+
+
+
+</body>
+</html>

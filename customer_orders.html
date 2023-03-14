@@ -1,0 +1,54 @@
+<!-- This page shows the customer his active and completed/expired orders!-->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+
+ <a href="/"><img src="static/images/logo.png" alt='logo' class="logo"/></a>
+
+<nav>
+<!-- User menu!-->
+  <a href="/search_for_book">Search Book</a>
+  <a href="/order_book">Order Book</a>
+  <a href="/customer_orders">Orders List</a>
+  <a href="/borrow_history">Borrow List</a>
+  <a href="/">Main Menu</a>
+  <div class="animation start-home"></div>
+</nav>
+<!-- Building the orders list!-->
+ <h2>Orders List</h2>
+        <table>
+		<thead>
+            <tr>
+				<th> Order Date</th>
+                <th> Book Name</th>
+                <th> Order Status </th>
+				<th> Notes </th>
+				</tr>
+				</thead>
+		{% for row in results %}
+			<tr>
+            <td>{{row[0].strftime('%d-%m-%Y')}}</td>    
+            <td>{{row[1]}}</td>
+			{% if row[2] == 'in library' %}
+				<td> Waiting In branch #{{row[3]}} </td>
+				<td> The Library will keep the book for you until {{row[5].strftime('%d-%m-%Y')}} </td>
+			{% elif row[2] == 'currently borrowed' %}
+				<td> Currently Borrowed By Other Customer  </td>
+				<td> Expected Arrival Date: {{row[4].strftime('%d-%m-%Y')}} </td>
+			{% else %}
+				<td>{{ row[2] }}</td>  
+			{% endif %}
+			</tr>
+		{% endfor %}
+        </table> 
+ <!-- Logout from the system!-->
+ <div class="logout">
+   {% if session.email %}
+      <a class="button1" href="/logout">Logout</a>
+   {% endif %}
+ </div>
+ 
+</body>
+</html>

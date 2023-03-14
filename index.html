@@ -1,0 +1,34 @@
+<!-- This is the website welcome page!-->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+
+
+<img src="static/images/logo.png" alt='logo' class="logo"/>
+<div class="social">
+<!-- Redirect to the site instagram, facebook and mail!-->
+ <a href="https://www.facebook.com/profile.php?id=100089339086434&mibextid=LQQJ4d"><img src="static/images/facebook.png" alt='facebook' class="facebook"/></a>
+ <a href="https://www.instagram.com/book_._king/"><img src="static/images/instagram.png" alt='instagram' class="instagram"/></a>
+ <a href="mailto:BookKing.info@gmail.com"><img src="static/images/gmail.png" alt='gmail' class="gmail"/></a>
+</div>
+
+
+
+
+
+
+
+<h2>Welcome To BookKing!</h2>
+
+<div class="center">
+<a href="/login_customer" class="button">Enter As Customer </a>
+<a href="/login_librarian" class="button">Enter As Librarian </a>
+</div>
+
+
+
+
+</body>
+</html>

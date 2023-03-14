@@ -1,0 +1,79 @@
+<!-- This is the librarian registration page!-->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+ <a href="/"><img src="static/images/logo.png" alt='logo' class="logo"/></a>
+ 
+	<!-- Catching all the relevant information from the librarian!-->
+ 	<div class="form">
+	<div class="title">Register</div>
+	<form action="/register_librarian" method="POST">
+	<div class="input-container ic1">
+    <input autocomplete="off" class="input" type="email" name="email" required>
+	<div class="cut"></div>
+	<label for="Email" class="placeholder">Email</label>
+	</div>
+	<div class="input-container ic2">
+	<input autocomplete="off" class="input" type="password" name="password" required>
+	<div class="cut"></div>
+	<label for="password" class="placeholder">password</label>
+	</div>
+	<div class="input-container ic2">
+	<input autocomplete="off" class="input" type="text" name="first_Name" required pattern="[a-zA-Z\s]+" title= "Only english letters">
+	<div class="cut"></div>
+	<label for="first name" class="placeholder">first name</label>
+	</div>
+	<div class="input-container ic2">
+	<input autocomplete="off" class="input" type="text" name="last_Name" pattern="[a-zA-Z\s]+" title= "Only english letters">
+	<div class="cut"></div>
+	<label for="last name" class="placeholder">last name</label>
+	</div>
+	<div class="input-container ic2">
+	<input autocomplete="off" class="input" type="tel" name="phone" pattern="^[0][5][0-9]{1}[-]{0,1}[0-9]{7}$" title="A valid Israeli mobile number" required>
+	<div class="cut"></div>
+	<label for="phone" class="placeholder">phone</label>
+	</div>
+	<div class="input-container ic2">
+	<input autocomplete="off" class="input" type="text" name="city" required pattern="[a-zA-Z\s]+" title= "Only english letters">
+	<div class="cut"></div>
+	<label for="city" class="placeholder">city</label>
+	</div>
+	<div class="input-container ic2">
+	<input autocomplete="off" class="input" type="text" name="street" required pattern="[a-zA-Z\s]+" title= "Only english letters" >
+	<div class="cut"></div>
+	<label for="street" class="placeholder">street</label>
+	</div>
+	<div class="input-container ic2">
+	<input min=0 autocomplete="off" class="input" type="number" name="house_num" required>
+	<div class="cut"></div>
+	<label for="house_num" class="placeholder">house number</label>
+	</div>
+	<div class="input-container ic2">
+	<select class="select" name="branch_name">
+	{% for val in all_data %}
+    <option value="{{val[0]}}" > {{val[0]}} </option>
+	{% endfor %}
+    </select>
+	<div class="cut"></div>
+	<label for="branch name" class="placeholder">branch name</label>
+	</div>
+		<!-- Error handling!-->
+
+		  {% with messages = get_flashed_messages() %}
+		{%if messages %}
+			{%for message in messages %}
+				<h5>{{message}}</h5>
+			{% endfor %}
+		{% endif %}
+	  {% endwith %}
+    <input type="submit" class="submit" name="register_librarian" value="Submit">
+	</div>
+	<br><br>
+
+   </form>
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- This page is the librarian homepage!-->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+
+
+<img src="static/images/logo.png" alt='logo' class="logo"/>
+
+
+ <h2>Welcome {{full_name}}!</h2>
+<!-- User menu!-->
+<div class="center">
+<a href="/add_copy" class="button">Insert New Book</a>
+<a href="/check_availability" class="button">Book Borrow</a>
+</div>
+
+
+
+<!-- Logout from the system!-->
+ <div class="logout">
+   {% if session.email %}
+      <a class="button1" href="/logout">Logout</a>
+   {% endif %}
+ </div>
+
+
+
+
+</body>
+</html>
